@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     brandSelect.addEventListener('change', e =>{
         searchValues.brand = e.target.value;
-        filterCars(e.target.value);
+        filterCars(e.target.value, 'brand');
     });
 
     yearSelect.addEventListener('change', e =>{
@@ -53,13 +53,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
     })
 
     
-    displayCars();
+    displayCars(cars);
     yearsMenu();
     brandColor();
     
             //FUNCTIONS
-    function displayCars(){
-        cars.forEach(car =>{
+    function displayCars(arr){
+        
+        arr.forEach(car =>{
             const {brand, model, year, price, doors, color, transmission} = car;
     
             const carHTML = document.createElement('P');
@@ -96,13 +97,21 @@ document.addEventListener('DOMContentLoaded', ()=>{
             const colorHTML = document.createElement('option');
             colorHTML.textContent = color;
             colorSelect.appendChild(colorHTML);
-        })
+        });
 
     }
 
-    // function filterCars(x){
-    //     const filtered = cars.filter(car => car.brand === x);
-    //     console.log(filtered)
-    // }
+    function filterCars(x, field){
+        cleanDisplay();
+        const filtered = cars.filter(car => car[field] === x);
+        displayCars(filtered);
+    }
+
+        //CLEANS THE RESULTS TO AVOID DUPLICATES
+    function cleanDisplay(){
+        while(results.firstChild){
+            results.removeChild(results.firstChild);
+        }
+    }
 });
     
