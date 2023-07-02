@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1 id="title">Car Finder</h1>
+    <div class="container">
+        <form action="submit" id="form">
+        <div class="item">
+            <label for="brand">Brand:</label>
+            <select name="brand" id="brand">
+                <option value="">Select:</option>
+            </select>
+        </div>
+        <div class="item">
+            <label for="year">Year:</label>
+            <select name="year" id="year">
+                <option value="">Select:</option>
+            </select>
+        </div>
+        <div class="item">
+            <label for="min-price"><span class="no-wrap">Min Price:</span></label>
+            <select name="min-price" id="min-price">
+                <option value="">Select:</option>
+                <option value="5000">5000</option>
+                <option value="10000">10000</option>
+                <option value="15000">15000</option>
+                <option value="20000">20000</option>
+            </select>
+        </div>
+        <div class="item">
+            <label for="max-price"><span class="no-wrap">Max Price:</span></label>
+            <select name="max-price" id="max-price">
+                <option value="">Select:</option>
+                <option value="5000">5000</option>
+                <option value="10000">10000</option>
+                <option value="15000">15000</option>
+                <option value="20000">20000</option>
+            </select>
+        </div>
+        <div class="item">
+            <label for="doors">Doors:</label>
+            <select name="doors" id="doors">
+                <option value="">Select:</option>
+                <option value="2">2</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+        <div class="item">
+            <label for="trans">Transmission:</label>
+            <select name="trans" id="trans">
+                <option value="">Select:</option>
+                <option value="auto">Automatic</option>
+                <option value="manual">Manual</option>
+            </select>
+        </div>
+        <div class="item">
+            <label for="color">Color:</label>
+            <select name="color" id="color">
+                <option value="">Select:</option>
+            </select>
+        </div>
+    </form>
+
+    <div id="results">
+        <h1>Results:</h1>
+    </div>
+    </div> <!--end of Container div-->
+</body>
+<script src="script.js"></script>
+<script src="db.js"></script>
+</html>
