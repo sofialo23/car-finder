@@ -82,16 +82,16 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }
     }
 
-        //GET ALL THE DIFFERENT CAR BRANDS AVAILABLE FROM DB
+        //GET ALL THE DIFFERENT CAR BRANDS AND COLORS AVAILABLE FROM DB
     function brandColor(){
-        //create a set so that brands don't repeat, then convert back to array
+        //CREATE A SET SO THAT BRANDS DON'T REPEAT, THEN CONVERT BACK TO ARRAY
         const brands = [...new Set(cars.map(car => car.brand))];
         brands.forEach(brand => {
             const brandHTML = document.createElement('option');
             brandHTML.textContent = brand;
             brandSelect.appendChild(brandHTML);
         })
-
+        //DO THE SAME AS ABOVE WITH THE COLORS
         const colors = [...new Set(cars.map(car => car.color))];
         colors.forEach(color => {
             const colorHTML = document.createElement('option');
