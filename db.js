@@ -46,7 +46,7 @@ const cars = [
 	},
 	{
 		brand: 'Mercedes Benz',
-		model: 'Clase C',
+		model: 'Class C',
 		year: 2015,
 		price: 25000,
 		doors: 4,
@@ -101,7 +101,7 @@ const cars = [
 	},
 	{
 		brand: 'Mercedes Benz',
-		model: 'Clase C',
+		model: 'Class C',
 		year: 2018,
 		price: 45000,
 		doors: 4,
@@ -155,7 +155,7 @@ const cars = [
 	},
 	{
 		brand: 'Mercedes Benz',
-		model: 'Clase C',
+		model: 'Class C',
 		year: 2018,
 		price: 40000,
 		doors: 4,

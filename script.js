@@ -24,32 +24,38 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     brandSelect.addEventListener('change', e =>{
         searchValues.brand = e.target.value;
-        filterCars(e.target.value, 'brand');
+        filterCars();
     });
 
     yearSelect.addEventListener('change', e =>{
-        searchValues.year = e.target.value;
+        searchValues.year = parseInt(e.target.value);
+        filterCars();
     });
 
     minSelect.addEventListener('change', e =>{
         searchValues.minPrice = e.target.value;
+        filterCars();
     });
 
     maxSelect.addEventListener('change', e =>{
         searchValues.maxPrice = e.target.value;
+        filterCars();
     });
 
     doorSelect.addEventListener('change', e =>{
         searchValues.doors = e.target.value;
+        filterCars();
     });
 
     transSelect.addEventListener('change', e =>{
         searchValues.transmission = e.target.value;
+        filterCars();
         
     });
 
     colorSelect.addEventListener('change', e =>{
         searchValues.color = e.target.value;
+        filterCars();
     })
 
     
@@ -58,17 +64,28 @@ document.addEventListener('DOMContentLoaded', ()=>{
     brandColor();
     
             //FUNCTIONS
-    function displayCars(arr){
-        
-        arr.forEach(car =>{
+
+            //DISPLAY ALL THE CARS WITH OR W/O FILTERS APPLIED
+    function displayCars(cars){
+        cleanDisplay();
+        cars.forEach(car =>{
             const {brand, model, year, price, doors, color, transmission} = car;
     
             const carHTML = document.createElement('P');
             carHTML.textContent = `
-            ${brand} - ${model} - ${year} - ${doors} doors - Transmission: ${transmission}
-            `;
+            ${brand} - ${model} - ${year} - ${doors} doors - Transmission: ${transmission} - Price $${price}
+              - color: ${color}`;
             results.appendChild(carHTML);
         })
+    }
+
+        //DISPLAY A MESSAGE IF THERE ARE NO RESULTS FOR THAT SEARCH
+    function displayEmpty(){
+        cleanDisplay();
+        const errorHTML = document.createElement('P');
+        errorHTML.textContent = 'There are no results for your search, please change your specifications';
+        results.appendChild(errorHTML);
+
     }
         //DISPLAY THE LAST 10 YEARS IN THE YEAR SELECT MENU 
     function yearsMenu(){
@@ -100,11 +117,86 @@ document.addEventListener('DOMContentLoaded', ()=>{
         });
 
     }
+        //APPLIES ALL THE FILTERS FROM THE SELECT MENU
+    function filterCars(){
+        const result = cars.filter(filterBrand).filter(filterYear).filter(filterMin).filter(filterMax).filter(filterDoors).filter(filterTrans).filter(filterColor);
+        
+        if(result.length){
+            displayCars(result);
+        }
+        else{
+            displayEmpty();
+        }
+        
+    }
 
-    function filterCars(x, field){
-        cleanDisplay();
-        const filtered = cars.filter(car => car[field] === x);
-        displayCars(filtered);
+
+        //FILTER CARS BY BRAND
+    function filterBrand(car){
+        if(searchValues.brand){
+            return searchValues.brand === car.brand;
+        }
+        else{
+            return car;
+        }
+    }
+        //FILTER CARS BY YEAR
+    function filterYear(car){
+        if(searchValues.year){
+            return searchValues.year === car.year;
+        }
+        else{
+            return car;
+        }
+    }
+
+        //FILTER CARS WITH PRICE HIGHER THAN MINIMUM PRICE
+    function filterMin(car){
+        console.log(car.minPrice);
+        if(searchValues.minPrice){
+            return car.price >= searchValues.minPrice;
+        }
+        else{
+            return car;
+        }
+    }
+
+        //FILTER CARS WITH PRICE LOWERS THAN MAXIMUM PRICE
+    function filterMax(car){
+        if(searchValues.maxPrice){
+            return car.price <= searchValues.maxPrice;
+        }
+        else{
+            return car;
+        }
+    }
+        //FILTER CARS BY THE NUMBER OF DOORS
+    function filterDoors(car){
+        if(searchValues.doors){
+            return car.doors == searchValues.doors;
+        }
+        else{
+            return car;
+        }
+    }
+
+        //FILTER CARS BY TRANSMISSION
+    function filterTrans(car){
+        if(searchValues.transmission){
+            return searchValues.transmission === car.transmission;
+        }
+        else{
+            return car;
+        }
+    }
+        //FILTER CARS BY COLOR
+    function filterColor(car){
+        if(searchValues.color){
+            return searchValues.color === car.color;
+        }
+        else{
+            return car;
+        }
     }
 
         //CLEANS THE RESULTS TO AVOID DUPLICATES
