@@ -69,13 +69,24 @@ document.addEventListener('DOMContentLoaded', ()=>{
     function displayCars(cars){
         cleanDisplay();
         cars.forEach(car =>{
-            const {brand, model, year, price, doors, color, transmission} = car;
-    
-            const carHTML = document.createElement('P');
-            carHTML.textContent = `
-            ${brand} - ${model} - ${year} - ${doors} doors - Transmission: ${transmission} - Price $${price}
-              - color: ${color}`;
-            results.appendChild(carHTML);
+            const {brand, model, doors, transmission, price, color, year} = car;
+           
+            // const carHTML = document.createElement('P');
+            // carHTML.textContent = `
+            // ${brand} - ${model} - ${year} - ${doors} doors - Transmission: ${transmission} - Price $${price}
+            //   - color: ${color}`;
+            // results.appendChild(carHTML);
+            const row = document.createElement('TR');
+            row.innerHTML = `
+            <td>${brand}</td>
+            <td>${model}</td>
+            <td>${year}</td>
+            <td>${doors}</td>
+            <td>${transmission}</td>
+            <td>$${price}</td>
+            <td>${color}</td>
+            `
+            results.appendChild(row);
         })
     }
 

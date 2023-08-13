@@ -45,7 +45,7 @@ body{
 .no-wrap{
     white-space: nowrap;
 }
-
+/* 
 #results{
     width: 100%;
     display: flex;
@@ -65,4 +65,19 @@ body{
     border-bottom: 1px solid #c1c1c1;
     text-transform: uppercase;
     font-weight:bold;
+} */
+
+#results-table{
+    width: 100%;
+    border-collapse: collapse;
+   
+}
+
+#results-table tr{
+    border-bottom: 1px solid #d8d8d8;
+}
+
+#results-table td, th{
+    padding: 5px;
+    text-align: start;
 }
